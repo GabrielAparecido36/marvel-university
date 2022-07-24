@@ -6,9 +6,14 @@ const routes: Routes = [
     path: '',
     children: [
       {
-        path: '',
-        redirectTo: '',
-        pathMatch: 'full'
+        path: 'character',
+        loadChildren: () => import('./character/character.module')
+          .then(m => m.CharacterModule)
+      },
+      {
+        path: '**',
+        redirectTo: 'character',
+        pathMatch: 'full',
       },
     ]
   },
