@@ -1,0 +1,11 @@
+<div class="" [ngClass]="clicked ? 'after-click-dropdown' : 'dropdown'" (scroll)="onScroll($event)">
+    <button class="select-layout" (click)="clicked = !clicked;">{{ selectCharacter ? selectCharacter : 'Select a
+        character' }}</button>
+    <button class="select-layout-bttns" (click)="clearCharacter()">X</button>
+    <div [ngClass]="clicked ? 'after-click-dropdown-content' : 'dropdown-content'">
+        <ng-container *ngFor="let char of loadedCharactes">
+            <option (click)="selectionItem(char)" [id]="char.id">{{char?.name}}</option>
+        </ng-container>
+    </div>
+    <app-ntt-loader [little]="true" style="margin-left: 2em; margin-top: 0.4em;" *ngIf="loading"></app-ntt-loader>
+</div>

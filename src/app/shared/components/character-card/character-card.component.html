@@ -1,0 +1,7 @@
+<div class="grid-item">
+    <div class="card">
+        <h3>{{char?.name}}</h3>
+        <img [src]="char.thumbnail.path+'/portrait_uncanny.'+char.thumbnail.extension">
+        <label>Last Update {{char?.modified | date: 'M/d/yy, h:mm a'}}</label>
+    </div>
+</div>
