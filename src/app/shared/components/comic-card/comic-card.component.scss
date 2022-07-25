@@ -10,11 +10,12 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    width: 22em;
+    width: 30em;
     height: 36em;
     transform: scale(1);
     transition: 0.2s ease-out;
     border-radius: 15px;
+    margin-right: 3em;
   }
 
   .card-list:hover {

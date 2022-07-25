@@ -13,13 +13,13 @@ export interface ICharacterDataContainer {
     limit?: number;
     total?: number;
     count?: number;
-    results?: ICharacter[];
+    results: ICharacter[];
 }
 
 export interface ICharacter {
     id?: number;
     name: string;
-    description?: string;
+    description: string;
     modified?: string;
     resourceURI?: string;
     urls?: IUrl[];

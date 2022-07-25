@@ -1,7 +1,6 @@
 .container {
   width: 94%;
   margin: 0px 3% 0px;
-  color: white;
   background: var(--background-color);
 }
 
@@ -18,7 +17,7 @@
 .filter {
   margin-left: 2.9em;
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   flex-direction: column;
   position: absolute;
   h3 {
@@ -29,7 +28,7 @@
 .sort {
   width: 100%;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   margin-top: 5em;
   cursor: pointer;
   label {

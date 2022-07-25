@@ -23,7 +23,7 @@ export class CharacterListComponent implements OnInit {
 
   public downloadCharacters(offSet: number = 0, params: string = '', clearChar: boolean = false) {
     this.loading = true;
-    params += `&offset=${offSet}&limit=24&orderBy=${this.sortBy ? '' : '-'}name&${this.filter}`
+    params += `&offset=${offSet}&orderBy=${this.sortBy ? '' : '-'}name&${this.filter}`
     this.characterService.getCharacter(params).subscribe((data: ICharacterDataWrapper) => {
       this.data = data;
       this.offSet = this.data?.data?.offset ? this.data?.data?.offset : 0;
@@ -35,9 +35,9 @@ export class CharacterListComponent implements OnInit {
   }
 
   public onScroll(event: any) {
-    if (event.target.offsetHeight + event.target.scrollTop >= event.target.scrollHeight) {
+    if (this.loadedCharactes.length != this.data.data?.total && (event.target.offsetHeight + event.target.scrollTop >= event.target.scrollHeight)) {
       this.loading = true;
-      this.downloadCharacters(this.offSet + 24)
+      this.downloadCharacters(this.offSet + 20)
     }
   }
 

@@ -25,7 +25,7 @@ export class NTTSelectComponent implements OnInit {
   }
 
   public downloadCharacters(offSet: number = 0) {
-    this.characterService.getCharacter(`&offset=${offSet}&limit=24`).subscribe((data: ICharacterDataWrapper) => {
+    this.characterService.getCharacter(`&offset=${offSet}`).subscribe((data: ICharacterDataWrapper) => {
       this.offSet = data?.data?.offset ? data?.data?.offset : 0;
       if (data.data?.results)
         this.loadedCharactes.push(...data.data?.results);
@@ -34,7 +34,7 @@ export class NTTSelectComponent implements OnInit {
 
   public onScroll(event: any) {
     if (event.target.offsetHeight + event.target.scrollTop >= event.target.scrollHeight) {
-      this.downloadCharacters(this.offSet + 24)
+      this.downloadCharacters(this.offSet + 20)
     }
   }
 
