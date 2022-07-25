@@ -1,4 +1,5 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { ICharacter, ICharacterDataWrapper } from 'src/app/pages/character/character.interface';
 import { CharacterService } from 'src/app/services/character.service';
 
@@ -8,12 +9,13 @@ import { CharacterService } from 'src/app/services/character.service';
   styleUrls: ['./ntt-select.component.scss']
 })
 
-export class NTTSelectComponent implements OnInit {
+export class NTTSelectComponent implements OnInit, OnDestroy {
 
   public selectCharacter!: string | null;
   public offSet: number = 0;
   public loadedCharactes: ICharacter[] = [];
   public clicked: boolean = false;
+  public subs = new Subscription();
 
   @Input() loading: boolean = false;
   @Output() selectChar = new EventEmitter<any>();
@@ -24,12 +26,16 @@ export class NTTSelectComponent implements OnInit {
     this.downloadCharacters();
   }
 
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
+  }
+
   public downloadCharacters(offSet: number = 0) {
-    this.characterService.getCharacter(`&offset=${offSet}`).subscribe((data: ICharacterDataWrapper) => {
+    this.subs.add(this.characterService.getCharacter(`&offset=${offSet}`).subscribe((data: ICharacterDataWrapper) => {
       this.offSet = data?.data?.offset ? data?.data?.offset : 0;
       if (data.data?.results)
         this.loadedCharactes.push(...data.data?.results);
-    });
+    }));
   }
 
   public onScroll(event: any) {
@@ -48,9 +54,4 @@ export class NTTSelectComponent implements OnInit {
     this.selectCharacter = null;
     this.cleanChar.emit();
   }
-
-  // @HostListener('focusout')
-  // public desativeClick() {
-  //   this.clicked = false;
-  // }
 }
