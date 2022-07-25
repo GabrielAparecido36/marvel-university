@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { CharacterService } from 'src/app/services/character.service';
 import { ICharacter, ICharacterDataWrapper } from '../character.interface';
 
@@ -7,7 +8,7 @@ import { ICharacter, ICharacterDataWrapper } from '../character.interface';
   templateUrl: './character-list.component.html',
   styleUrls: ['./character-list.component.scss']
 })
-export class CharacterListComponent implements OnInit {
+export class CharacterListComponent implements OnInit, OnDestroy {
 
   public offSet: number = 0;
   public data!: ICharacterDataWrapper;
@@ -15,23 +16,28 @@ export class CharacterListComponent implements OnInit {
   public loading: boolean = true;
   public sortBy: boolean = true;
   public filter: string = '';
+  public subs = new Subscription();
   constructor(private characterService: CharacterService) { }
 
   ngOnInit(): void {
     this.downloadCharacters();
   }
 
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
+  }
+
   public downloadCharacters(offSet: number = 0, params: string = '', clearChar: boolean = false) {
     this.loading = true;
     params += `&offset=${offSet}&orderBy=${this.sortBy ? '' : '-'}name&${this.filter}`
-    this.characterService.getCharacter(params).subscribe((data: ICharacterDataWrapper) => {
+    this.subs.add(this.characterService.getCharacter(params).subscribe((data: ICharacterDataWrapper) => {
       this.data = data;
       this.offSet = this.data?.data?.offset ? this.data?.data?.offset : 0;
       if (clearChar) this.loadedCharactes = [];
       if (this.data.data?.results)
         this.loadedCharactes.push(...this.data.data?.results);
       this.loading = false;
-    });
+    }));
   }
 
   public onScroll(event: any) {
