@@ -7,12 +7,9 @@ import { IComic } from '../../interfaces/comic.interface';
   styleUrls: ['./comic-card.component.scss']
 })
 
-export class ComicCardComponent implements OnInit {
+export class ComicCardComponent {
 
   @Input() comic!: IComic;
   constructor() { }
-  ngOnInit(): void {
-    console.log(this.comic);
-  }
 
 }

@@ -44,7 +44,7 @@ export class CharacterViewComponent implements OnInit {
   }
 
   public onScroll(event: any) {
-    if (this.comics.length != this.data.data?.total && (event.target.offsetHeight + event.target.scrollTop >= event.target.scrollHeight)) {
+    if (this.comics.length != this.dataComic.data?.total && (event.target.offsetHeight + event.target.scrollTop >= event.target.scrollHeight)) {
       this.loading = true;
       this.downloadComics(this.offSet + 20)
     }

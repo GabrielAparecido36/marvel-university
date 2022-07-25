@@ -14,7 +14,7 @@
                         <app-comic-card [comic]="comic"></app-comic-card>
                     </ng-container>
                 </div>
-                <div style="display: flex; justify-content: center;">
+                <div style="display: flex; justify-content: center;" *ngIf="loading">
                     <app-ntt-loader></app-ntt-loader>
                 </div>
             </div>
