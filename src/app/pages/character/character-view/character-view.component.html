@@ -1,1 +1,23 @@
-<p>character-view works!</p>
+<button class="button-back" (click)="backPage()">Back page</button>
+<div class="grid-item">
+    <div class="card">
+        <app-character-card [char]="character"></app-character-card>
+        <div class="items">
+            <div class="card-description border-red" *ngIf="character?.description">
+                <h3>Description</h3>
+                <label>{{character?.description}}</label>
+            </div>
+            <div class="container-grid" (scroll)="onScroll($event)" *ngIf="comics">
+                <h2 style="display: flex; justify-content: center">Commics</h2>
+                <div class="grid">
+                    <ng-container *ngFor="let comic of comics">
+                        <app-comic-card [comic]="comic"></app-comic-card>
+                    </ng-container>
+                </div>
+                <div style="display: flex; justify-content: center;">
+                    <app-ntt-loader></app-ntt-loader>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

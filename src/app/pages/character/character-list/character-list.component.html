@@ -18,7 +18,7 @@
   <div class="container-grid" (scroll)="onScroll($event)">
     <div class="grid">
       <div *ngFor="let char of loadedCharactes">
-        <app-character-card [char]="char"></app-character-card>
+        <app-character-card  [char]="char" [cardList]="true"></app-character-card>
       </div>
     </div>
     <div style="display: flex; justify-content: center;" *ngIf="loading">

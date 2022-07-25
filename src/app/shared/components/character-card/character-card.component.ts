@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ICharacter } from 'src/app/pages/character/character.interface';
 
 @Component({
@@ -7,12 +8,15 @@ import { ICharacter } from 'src/app/pages/character/character.interface';
   styleUrls: ['./character-card.component.scss']
 })
 
-export class CharacterCardComponent implements OnInit {
+export class CharacterCardComponent {
 
   @Input() char!: ICharacter;
-  constructor() { }
+  @Input() cardList: boolean = false;
+  @Input() description: boolean = false;
+  constructor(private router: Router) { }
 
-  ngOnInit(): void {
+  public viewChar(): void {
+    this.router.navigateByUrl(`pages/character/${this.char.id}/view`)
   }
 
 }

@@ -1,0 +1,103 @@
+.button-back{
+  background-color: #1876d1;
+  color: #ffffff;
+  border-radius: 5px;
+  font-size: 18px;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.title {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  h1 {
+    margin-top: 10px;
+    margin-bottom: 0px;
+  }
+}
+
+.container-grid {
+  overflow: auto;
+  height: 42em;
+  padding: 3em 0;
+  margin-top: 3em;
+}
+
+.grid{
+  grid-template-columns: auto auto;
+  display: grid;
+}
+
+.grid-item {
+  width: 100%;
+  height: auto;
+  margin-bottom: 1em;
+  display: flex;
+  justify-content: center;
+  background-color: var(--background-color);
+  .card {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 22em;
+    height: 36em;
+    transform: scale(1);
+    transition: 0.2s ease-out;
+    border-radius: 15px;
+  }
+  .card-description {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 50em;
+    height: auto;
+    transform: scale(1);
+    transition: 0.2s ease-out;
+    padding: 1em;
+    h3{
+      margin-top: 0px;
+    }
+  }
+
+  img {
+    height: 450px;
+    width: 300px;
+    margin-bottom: 1.5em;
+  }
+
+  .border-red {
+    border-radius: 15px;
+    border: solid red;
+  }
+
+  .items {
+    flex-direction: column;
+    margin-top: 1em;
+    width: 70em;
+    display: flex;
+    align-items: center;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+@media screen and (max-width: 1580px) {
+  .grid {
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+}
+@media screen and (max-width: 1170px) {
+  .grid {
+    display: grid;
+    grid-template-columns: auto;
+  }
+}
