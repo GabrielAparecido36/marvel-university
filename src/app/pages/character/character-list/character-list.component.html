@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="title">
+    <h1>Marvels Characters</h1>
+  </div>
+  <div class="filter">
+    <h3>Choose a character:</h3>
+    <div>
+      <app-ntt-select (selectChar)="searchCharacter($event)" (cleanChar)="cleanChar()"
+        [loading]="loading">
+      </app-ntt-select>
+    </div>
+  </div>
+
+  <div class="sort" (click)="updateSortBy()">
+    <label> SORT BY</label> <label style="margin-left: 0.5em;">A - Z <i class="arrow"
+        [ngClass]="sortBy ? 'up': 'down' "></i></label>
+  </div>
+  <div class="container-grid" (scroll)="onScroll($event)">
+    <div class="grid">
+      <div *ngFor="let char of loadedCharactes">
+        <app-character-card  [char]="char" [cardList]="true"></app-character-card>
+      </div>
+    </div>
+    <div style="display: flex; justify-content: center;" *ngIf="loading">
+      <app-ntt-loader></app-ntt-loader>
+    </div>
+  </div>
+</div>
